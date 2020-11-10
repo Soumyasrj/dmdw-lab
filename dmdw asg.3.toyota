@@ -1,0 +1,133 @@
+In [5]:
+import pandas as pd
+data =pd.read_csv('Toyota.csv')
+In [6]:
+type(data)
+Out[6]:
+pandas.core.frame.DataFrame
+In [7]:
+data.shape
+Out[7]:
+(1436, 1)
+In [8]:
+data.info()
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 1436 entries, 0 to 1435
+Data columns (total 1 columns):
+ #   Column                                                        Non-Null Count  Dtype 
+---  ------                                                        --------------  ----- 
+ 0   ,Price,Age,KM,FuelType,HP,MetColor,Automatic,CC,Doors,Weight  1436 non-null   object
+dtypes: object(1)
+memory usage: 11.3+ KB
+In [9]:
+data.index
+Out[9]:
+RangeIndex(start=0, stop=1436, step=1)
+In [10]:
+data.columns
+Out[10]:
+Index([',Price,Age,KM,FuelType,HP,MetColor,Automatic,CC,Doors,Weight'], dtype='object')
+In [11]:
+data.head()
+Out[11]:
+,Price,Age,KM,FuelType,HP,MetColor,Automatic,CC,Doors,Weight
+0	0,13500,23,46986,Diesel,90,1,0,2000,three,1165
+1	1,13750,23,72937,Diesel,90,1,0,2000,3,1165
+2	2,13950,24,41711,Diesel,90,,0,2000,3,1165
+3	3,14950,26,48000,Diesel,90,0,0,2000,3,1165
+4	4,13750,30,38500,Diesel,90,0,0,2000,3,1170
+In [12]:
+data.head(10)
+Out[12]:
+,Price,Age,KM,FuelType,HP,MetColor,Automatic,CC,Doors,Weight
+0	0,13500,23,46986,Diesel,90,1,0,2000,three,1165
+1	1,13750,23,72937,Diesel,90,1,0,2000,3,1165
+2	2,13950,24,41711,Diesel,90,,0,2000,3,1165
+3	3,14950,26,48000,Diesel,90,0,0,2000,3,1165
+4	4,13750,30,38500,Diesel,90,0,0,2000,3,1170
+5	5,12950,32,61000,Diesel,90,0,0,2000,3,1170
+6	6,16900,27,??,Diesel,????,,0,2000,3,1245
+7	7,18600,30,75889,,90,1,0,2000,3,1245
+8	8,21500,27,19700,Petrol,192,0,0,1800,3,1185
+9	9,12950,23,71138,Diesel,????,,0,1900,3,1105
+In [13]:
+data.tail()
+Out[13]:
+,Price,Age,KM,FuelType,HP,MetColor,Automatic,CC,Doors,Weight
+1431	1431,7500,,20544,Petrol,86,1,0,1300,3,1025
+1432	1432,10845,72,??,Petrol,86,0,0,1300,3,1015
+1433	1433,8500,,17016,Petrol,86,0,0,1300,3,1015
+1434	1434,7250,70,??,,86,1,0,1300,3,1015
+1435	1435,6950,76,1,Petrol,110,0,0,1600,5,1114
+In [14]:
+data.tail(10)
+Out[14]:
+,Price,Age,KM,FuelType,HP,MetColor,Automatic,CC,Doors,Weight
+1426	1426,9950,78,30964,Petrol,110,,1,1600,3,1080
+1427	1427,8950,,29000,Petrol,86,1,1,1300,3,1045
+1428	1428,8450,72,??,Petrol,86,,0,1300,3,1015
+1429	1429,8950,78,24000,Petrol,86,1,1,1300,5,1065
+1430	1430,8450,80,23000,Petrol,86,0,0,1300,3,1015
+1431	1431,7500,,20544,Petrol,86,1,0,1300,3,1025
+1432	1432,10845,72,??,Petrol,86,0,0,1300,3,1015
+1433	1433,8500,,17016,Petrol,86,0,0,1300,3,1015
+1434	1434,7250,70,??,,86,1,0,1300,3,1015
+1435	1435,6950,76,1,Petrol,110,0,0,1600,5,1114
+In [38]:
+data.isnull().sum()
+Out[38]:
+,Price,Age,KM,FuelType,HP,MetColor,Automatic,CC,Doors,Weight    0
+dtype: int64
+In [39]:
+data.dropna(inplace=True)
+data.isnull().sum()
+Out[39]:
+,Price,Age,KM,FuelType,HP,MetColor,Automatic,CC,Doors,Weight    0
+dtype: int64
+In [40]:
+data.shape
+Out[40]:
+(1436, 1)
+In [41]:
+data.head(10)
+Out[41]:
+,Price,Age,KM,FuelType,HP,MetColor,Automatic,CC,Doors,Weight
+0	0,13500,23,46986,Diesel,90,1,0,2000,three,1165
+1	1,13750,23,72937,Diesel,90,1,0,2000,3,1165
+2	2,13950,24,41711,Diesel,90,,0,2000,3,1165
+3	3,14950,26,48000,Diesel,90,0,0,2000,3,1165
+4	4,13750,30,38500,Diesel,90,0,0,2000,3,1170
+5	5,12950,32,61000,Diesel,90,0,0,2000,3,1170
+6	6,16900,27,??,Diesel,????,,0,2000,3,1245
+7	7,18600,30,75889,,90,1,0,2000,3,1245
+8	8,21500,27,19700,Petrol,192,0,0,1800,3,1185
+9	9,12950,23,71138,Diesel,????,,0,1900,3,1105
+In [ ]:
+data[['Price',"Age"]].head(10)
+In [ ]:
+data['MetColor'].mean()
+In [ ]:
+data['MetColor'].head()
+In [ ]:
+import numpy as np
+data['MetColor'].replace(np.NaN,data['MetColor'].mean()).head()
+In [36]:
+data.head(10)
+Out[36]:
+,Price,Age,KM,FuelType,HP,MetColor,Automatic,CC,Doors,Weight
+0	0,13500,23,46986,Diesel,90,1,0,2000,three,1165
+1	1,13750,23,72937,Diesel,90,1,0,2000,3,1165
+2	2,13950,24,41711,Diesel,90,,0,2000,3,1165
+3	3,14950,26,48000,Diesel,90,0,0,2000,3,1165
+4	4,13750,30,38500,Diesel,90,0,0,2000,3,1170
+5	5,12950,32,61000,Diesel,90,0,0,2000,3,1170
+6	6,16900,27,??,Diesel,????,,0,2000,3,1245
+7	7,18600,30,75889,,90,1,0,2000,3,1245
+8	8,21500,27,19700,Petrol,192,0,0,1800,3,1185
+9	9,12950,23,71138,Diesel,????,,0,1900,3,1105
+In [ ]:
+data['CC'].mean()
+In [ ]:
+data['CC'].head()
+In [ ]:
+data[['Age',"KM"]].head(20)
